@@ -77,3 +77,14 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **.env, *.pem, *.key**: Archivos que contienen variables de entorno y credenciales (como contraseñas de bases de datos o llaves API). Subir estos archivos es una vulnerabilidad de seguridad crítica.
 >   - **.DS_Store, Thumbs.db**: Archivos temporales generados por macOS y Windows respectivamente para almacenar metadatos de las carpetas (ej. posición de íconos). No tienen relevancia para el proyecto.
 >   - **.vscode/**: Configuraciones locales del editor de código de cada desarrollador. Se ignoran excepto por archivos compartidos específicos de configuración (`settings.json`, `launch.json`, etc.) mediante reglas de exclusión (`!`).
+
+> **[2026-06-04] - Estructura HTML5 Inicial (`index.html`)**
+> - **Qué se hizo:** Se definió el esqueleto mínimo y estándar de un documento HTML5 para dar inicio al proyecto Woodcraft.
+> - **Explicación de la Lógica:**
+>   - **`<!DOCTYPE html>`**: Indica al navegador que el documento es de tipo HTML5, garantizando que se renderice en el modo estándar y se interpreten correctamente las etiquetas modernas.
+>   - **`<html lang="es">`**: Declara el idioma del sitio como español, lo cual es vital para el SEO y la accesibilidad (los lectores de pantalla lo usan para la pronunciación correcta).
+>   - **`<meta charset="UTF-8">`**: Habilita la codificación universal, permitiendo mostrar correctamente caracteres especiales, tildes y la letra 'ñ'.
+>   - **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`**: Obligatorio para diseño responsivo. Ajusta el tamaño de visualización a la pantalla del dispositivo y evita que los dispositivos móviles escalen la página hacia atrás por defecto.
+>   - **`<meta name="description" ...>`**: Resumen meta descriptivo del sitio que ayuda a los buscadores a indexarnos y mejora la tasa de clics (CTR) en los resultados de búsqueda.
+
+
