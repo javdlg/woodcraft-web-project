@@ -86,5 +86,7 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **`<meta charset="UTF-8">`**: Habilita la codificación universal, permitiendo mostrar correctamente caracteres especiales, tildes y la letra 'ñ'.
 >   - **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`**: Obligatorio para diseño responsivo. Ajusta el tamaño de visualización a la pantalla del dispositivo y evita que los dispositivos móviles escalen la página hacia atrás por defecto.
 >   - **`<meta name="description" ...>`**: Resumen meta descriptivo del sitio que ayuda a los buscadores a indexarnos y mejora la tasa de clics (CTR) en los resultados de búsqueda.
-
-
+>   - **`rel="preconnect"`**: Atributo de optimización de rendimiento. Le dice al navegador que inicie la conexión con los servidores de Google Fonts antes de solicitar las fuentes de forma explícita. Esto ahorra valiosos milisegundos en la resolución DNS y negociación TLS, reduciendo el tiempo hasta el primer pintado (FMP).
+>   - **Emparejamiento de fuentes (Font Pairing)**: Elegimos *Playfair Display* (Serif clásica, cálida y con aspecto artesanal) para títulos decorativos y *Inter* (Sans-serif moderna, neutra y de excelente legibilidad) para textos de lectura. Esto crea un contraste visual premium y profesional.
+>   - **FontAwesome (Iconos)**: Cargado desde CDN para contar con iconos en formato vectorial que no pierden nitidez en pantallas de alta densidad (Retina) y pesan menos que los assets tradicionales.
+>   - **Separación de CSS (`main.css` y `components.css`)**: Estructura modular recomendada. `main.css` contendrá variables globales, reset de estilos y la grilla base (diseño global). `components.css` albergará los estilos de elementos reutilizables (botones, tarjetas, menú flotante del carrito, etc.).
