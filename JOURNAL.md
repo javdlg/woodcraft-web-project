@@ -109,3 +109,9 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >     - **CTA Primario (`#hero-cta-primary`)**: Enfocado en la conversión rápida (ir a `#catalog`). Tendrá el color de acento más fuerte y mayor peso visual.
 >     - **CTA Secundario (`#hero-cta-secondary`)**: Enfocado en el branding y la confianza (ir a `#process`). Llevará estilos más ligeros (outline o fondo translúcido) para no competir visualmente con el botón principal.
 
+> **[2026-06-05] - Sección de Categorías Destacadas (`#categories-section`)**
+> - **Qué se hizo:** Se agregó la estructura para las categorías principales de la tienda (Cocina, Baño, Living, Jardín & Exterior).
+> - **Explicación de la Lógica:**
+>   - **Atributos de Datos Personalizados (`data-category`)**: El uso de atributos `data-*` de HTML5 es una excelente práctica para almacenar metadatos en el DOM sin comprometer la semántica. En JavaScript, podremos leer fácilmente qué categoría seleccionó el usuario usando `element.dataset.category` para filtrar dinámicamente el catálogo.
+>   - **Maquetación en Grid (.categories-grid)**: Dejamos el contenedor listo para aplicar **CSS Grid** en la fase de diseño. Esto facilitará la adaptabilidad (ej: 1 columna en móvil, 2 en tabletas y 4 en pantallas grandes) manteniendo el código limpio.
+>   - **Capa Overlay (`.category-overlay`)**: Esquina fundamental para el diseño visual y la accesibilidad. Esta capa superpuesta semitransparente (que estilizaremos con CSS) asegura un buen contraste entre la imagen de fondo de madera y el texto superior blanco, garantizando la legibilidad (directrices WCAG) y sirviendo para micro-animaciones al pasar el cursor (hover).
