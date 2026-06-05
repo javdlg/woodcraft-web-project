@@ -107,6 +107,33 @@
                 </div>
             </div>
         </section>
+
+        <!-- Catálogo Dinámico (Portafolio y Productos) -->
+        <section class="catalog-section" id="catalog">
+            <div class="container">
+                <div class="catalog-header">
+                    <h2 class="section-title">Nuestras Creaciones</h2>
+                    <p class="section-subtitle">Cada pieza es seleccionada y trabajada cuidando los detalles y vetas naturales.</p>
+                </div>
+                
+                <!-- Filtros de Productos (Target para Event Delegation) -->
+                <div class="filter-container" id="filter-container">
+                    <button class="filter-btn active" data-filter="all" id="btn-filter-all">Todos</button>
+                    <button class="filter-btn" data-filter="cocina" id="btn-filter-cocina">Cocina</button>
+                    <button class="filter-btn" data-filter="baño" id="btn-filter-banio">Baño</button>
+                    <button class="filter-btn" data-filter="living" id="btn-filter-living">Living</button>
+                    <button class="filter-btn" data-filter="jardineria" id="btn-filter-jardineria">Jardinería</button>
+                </div>
+                
+                <!-- Grid de Productos (Renderizado dinámico por JS) -->
+                <div class="products-grid" id="products-grid">
+                    <!-- Las tarjetas de productos serán inyectadas por JS -->
+                    <div class="catalog-loading" id="catalog-loading">
+                        <i class="fa-solid fa-spinner fa-spin"></i> Cargando catálogo de madera...
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 </body>
 </html>
