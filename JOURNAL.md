@@ -90,3 +90,12 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Emparejamiento de fuentes (Font Pairing)**: Elegimos *Playfair Display* (Serif clásica, cálida y con aspecto artesanal) para títulos decorativos y *Inter* (Sans-serif moderna, neutra y de excelente legibilidad) para textos de lectura. Esto crea un contraste visual premium y profesional.
 >   - **FontAwesome (Iconos)**: Cargado desde CDN para contar con iconos en formato vectorial que no pierden nitidez en pantallas de alta densidad (Retina) y pesan menos que los assets tradicionales.
 >   - **Separación de CSS (`main.css` y `components.css`)**: Estructura modular recomendada. `main.css` contendrá variables globales, reset de estilos y la grilla base (diseño global). `components.css` albergará los estilos de elementos reutilizables (botones, tarjetas, menú flotante del carrito, etc.).
+
+> **[2026-06-05] - Estructura Semántica del Encabezado (`<header>`)**
+> - **Qué se hizo:** Se implementó la estructura de navegación principal y acciones de la tienda en el `<body>` usando etiquetas semánticas de HTML5.
+> - **Explicación de la Lógica:**
+>   - **`<header>`**: Indica semánticamente al navegador y buscadores que este bloque contiene el encabezado del sitio (marca, navegación y acciones globales).
+>   - **`<nav>` con `aria-label="Navegación principal"`**: Define la sección de navegación de la página. El atributo `aria-label` ayuda a las herramientas de accesibilidad a distinguir este menú principal de otros posibles menús en el sitio (como el del footer).
+>   - **Estructura de Lista (`<ul>`, `<li>`)**: Es el estándar de accesibilidad para estructurar menús de navegación, permitiendo que lectores de pantalla informen al usuario cuántos enlaces hay disponibles en el menú.
+>   - **Botón del Carrito (`#cart-toggle-btn`) y Contador**: Contiene un icono de bolsa de compras y un elemento `<span>` (`#cart-badge-count`) que inicia en `0`. Este contador se actualizará dinámicamente mediante JavaScript cuando el usuario agregue productos.
+>   - **Botón de Menú Móvil (`#mobile-menu-toggle`)**: Botón hamburguesa con `aria-expanded="false"`. Es una buena práctica de accesibilidad (WAI-ARIA) para indicar a lectores de pantalla si el menú móvil desplegable está actualmente abierto o cerrado.

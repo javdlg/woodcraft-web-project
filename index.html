@@ -21,6 +21,36 @@
     <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
-    <!-- El contenido se irá construyendo paso a paso -->
+    <!-- Encabezado y Navegación Principal -->
+    <header class="main-header" id="main-header">
+        <div class="header-container">
+            <!-- Logotipo de Marca -->
+            <a href="#" class="logo" id="logo-brand">
+                <i class="fa-solid fa-tree logo-icon"></i>
+                <span class="logo-text">Wood<span>craft</span></span>
+            </a>
+            
+            <!-- Menú de Navegación Semántico -->
+            <nav class="nav-menu" id="nav-menu" aria-label="Navegación principal">
+                <ul>
+                    <li><a href="#" class="nav-link active" id="nav-link-home">Inicio</a></li>
+                    <li><a href="#catalog" class="nav-link" id="nav-link-catalog">Catálogo</a></li>
+                    <li><a href="#process" class="nav-link" id="nav-link-process">Nuestro Proceso</a></li>
+                    <li><a href="#contact" class="nav-link" id="nav-link-contact">Contacto</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Acciones del E-commerce (Carrito e Icono Hamburguesa Móvil) -->
+            <div class="header-actions">
+                <button class="cart-toggle-btn" id="cart-toggle-btn" aria-label="Abrir carrito de compras">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge" id="cart-badge-count">0</span>
+                </button>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Abrir menú móvil" aria-expanded="false">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
 </body>
 </html>
