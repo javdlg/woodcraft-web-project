@@ -173,5 +173,36 @@
             </div>
         </section>
     </main>
+
+    <!-- Panel del Carrito de Compras (Drawer lateral derecho) -->
+    <div class="cart-drawer-overlay" id="cart-drawer-overlay"></div>
+    <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+        <!-- Cabecera del Carrito -->
+        <div class="cart-drawer-header">
+            <h3><i class="fa-solid fa-bag-shopping"></i> Tu Carrito</h3>
+            <button class="cart-close-btn" id="cart-close-btn" aria-label="Cerrar carrito">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        
+        <!-- Contenido dinámico del carrito -->
+        <div class="cart-items-container" id="cart-items-container">
+            <!-- Mensaje vacío inicial -->
+            <div class="cart-empty-message" id="cart-empty-message">
+                <i class="fa-solid fa-folder-open"></i>
+                <p>Tu carrito está vacío.</p>
+                <a href="#catalog" class="btn btn-secondary" id="cart-back-to-catalog">Explorar catálogo</a>
+            </div>
+        </div>
+        
+        <!-- Pie del Carrito (Subtotal y Checkout) -->
+        <div class="cart-drawer-footer" id="cart-drawer-footer">
+            <div class="cart-total-row">
+                <span>Subtotal:</span>
+                <span class="cart-total-price" id="cart-total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="cart-checkout-btn">Proceder al Pago</button>
+        </div>
+    </aside>
 </body>
 </html>

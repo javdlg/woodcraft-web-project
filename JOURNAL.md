@@ -130,3 +130,10 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Contenedor Placeholder para Imagen (`.image-placeholder`)**: En lugar de incluir una etiqueta `<img>` con una ruta vacía o rota, creamos un marcador de posición dinámico usando estilos de CSS e iconos. Esto asegura que la web se renderice de forma pulida desde el primer momento, facilitando su sustitución posterior por imágenes reales.
 >   - **Lista de Pasos Estructurada (`.process-steps`)**: Combinación de `<ul>` y `<li>` con divs internos para separar el número decorativo del paso (`.step-num`) del contenido. Esto permite al diseñador aplicar estilos distintos al círculo con el número de manera independiente a la tipografía del contenido.
 
+> **[2026-06-05] - Panel Lateral del Carrito (`#cart-drawer`)**
+> - **Qué se hizo:** Se implementó la estructura para el carrito de compras lateral desplegable (Drawer) junto con su capa overlay de fondo.
+> - **Explicación de la Lógica:**
+>   - **Semántica con `<aside>`**: Usamos `<aside>` ya que el carrito es una interfaz secundaria o panel flotante que no forma parte del flujo principal de lectura de la página.
+>   - **Capa Overlay (`.cart-drawer-overlay`)**: Un contenedor independiente que servirá para oscurecer la web detrás del carrito cuando esté abierto, mejorando el contraste visual. También sirve para cerrar el menú si el usuario hace clic fuera del carrito.
+>   - **Estado de Accesibilidad (`aria-hidden="true"`)**: Al estar oculto por defecto, le indicamos a los navegadores y lectores de pantalla que ignoren este elemento en la carga inicial. JavaScript cambiará este atributo a `false` al abrirlo para que sea legible y navegable con el teclado.
+>   - **Mensaje de Carrito Vacío (`#cart-empty-message`)**: Un contenedor provisional que da feedback al usuario si no hay ítems. JavaScript ocultará este mensaje y dibujará las tarjetas de compra una vez que agreguemos productos de madera.
