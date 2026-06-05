@@ -99,3 +99,13 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Estructura de Lista (`<ul>`, `<li>`)**: Es el estándar de accesibilidad para estructurar menús de navegación, permitiendo que lectores de pantalla informen al usuario cuántos enlaces hay disponibles en el menú.
 >   - **Botón del Carrito (`#cart-toggle-btn`) y Contador**: Contiene un icono de bolsa de compras y un elemento `<span>` (`#cart-badge-count`) que inicia en `0`. Este contador se actualizará dinámicamente mediante JavaScript cuando el usuario agregue productos.
 >   - **Botón de Menú Móvil (`#mobile-menu-toggle`)**: Botón hamburguesa con `aria-expanded="false"`. Es una buena práctica de accesibilidad (WAI-ARIA) para indicar a lectores de pantalla si el menú móvil desplegable está actualmente abierto o cerrado.
+
+> **[2026-06-05] - Contenedor Principal y Sección Héroe (`#hero-section`)**
+> - **Qué se hizo:** Se introdujo la etiqueta estructural `<main>` y la sección Héroe (`<section>`) con el título principal `<h1>` y botones de llamado a la acción (CTA).
+> - **Explicación de la Lógica:**
+>   - **`<main>`**: Define el contenido central único de la página. Solo debe haber un elemento `<main>` activo por documento, facilitando la navegación de lectores de pantalla que permiten "saltar al contenido principal".
+>   - **Único `<h1>` de la página (SEO)**: Mantener un solo `<h1>` por página es una regla crítica de accesibilidad y SEO. Este indica el tema principal de la página a los buscadores (*Madera con Historia para tu Hogar*). Para secciones secundarias usaremos `<h2>`, `<h3>`, etc.
+>   - **Llamados a la Acción Jerarquizados (CTA - Call To Action)**:
+>     - **CTA Primario (`#hero-cta-primary`)**: Enfocado en la conversión rápida (ir a `#catalog`). Tendrá el color de acento más fuerte y mayor peso visual.
+>     - **CTA Secundario (`#hero-cta-secondary`)**: Enfocado en el branding y la confianza (ir a `#process`). Llevará estilos más ligeros (outline o fondo translúcido) para no competir visualmente con el botón principal.
+
