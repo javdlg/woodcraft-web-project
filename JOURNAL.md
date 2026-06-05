@@ -137,3 +137,10 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Capa Overlay (`.cart-drawer-overlay`)**: Un contenedor independiente que servirá para oscurecer la web detrás del carrito cuando esté abierto, mejorando el contraste visual. También sirve para cerrar el menú si el usuario hace clic fuera del carrito.
 >   - **Estado de Accesibilidad (`aria-hidden="true"`)**: Al estar oculto por defecto, le indicamos a los navegadores y lectores de pantalla que ignoren este elemento en la carga inicial. JavaScript cambiará este atributo a `false` al abrirlo para que sea legible y navegable con el teclado.
 >   - **Mensaje de Carrito Vacío (`#cart-empty-message`)**: Un contenedor provisional que da feedback al usuario si no hay ítems. JavaScript ocultará este mensaje y dibujará las tarjetas de compra una vez que agreguemos productos de madera.
+
+> **[2026-06-05] - Pie de Página Semántico (`<footer>`) e Importación de Scripts**
+> - **Qué se hizo:** Se finalizó la maquetación del archivo HTML base integrando la sección de pie de página (`<footer>`) y enlazando el archivo de script principal (`js/app.js`).
+> - **Explicación de la Lógica:**
+>   - **Semántica con `<footer>`**: Contiene la información de cierre del sitio (créditos de marca, redes sociales, enlaces adicionales y datos de contacto).
+>   - **Accesibilidad en Iconos Sociales (a11y)**: Al usar solo iconos para los enlaces de redes sociales (Instagram, Pinterest, Facebook), los lectores de pantalla no tendrían texto que leer. Para solucionarlo, añadimos el atributo `aria-label="..."` en cada etiqueta `<a>`, asegurando que personas con discapacidad visual entiendan el destino de cada enlace.
+>   - **Carga de Scripts No Bloqueante (`type="module"`)**: Al usar `type="module"`, el navegador maneja el script de forma diferida automáticamente (similar a un atributo `defer`), descargándolo en segundo plano sin interrumpir el renderizado del HTML. También nos permite estructurar nuestro JavaScript usando módulos de ES6 (`import` / `export`) nativamente.
