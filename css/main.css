@@ -123,3 +123,62 @@ button {
     cursor: pointer;
 }
 
+/* ==========================================================================
+   CLASES DE UTILIDAD & ESTRUCTURA
+   ========================================================================== */
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+}
+
+/* Incremento de padding lateral en tablets y escritorio */
+@media (min-width: 768px) {
+    .container {
+        padding-left: var(--space-lg);
+        padding-right: var(--space-lg);
+    }
+}
+
+/* Alineación de Texto */
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: var(--color-text-muted);
+}
+
+.text-accent {
+    color: var(--color-accent);
+}
+
+/* Estilos de Encabezado de Sección Reutilizables */
+.section-title {
+    font-family: var(--font-secondary);
+    font-size: var(--font-2xl);
+    color: var(--color-primary);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.section-subtitle {
+    font-size: var(--font-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-xs);
+    font-weight: 400;
+}
+
+@media (min-width: 768px) {
+    .section-title {
+        font-size: var(--font-3xl);
+    }
+    .section-subtitle {
+        font-size: var(--font-base);
+    }
+}
+
+

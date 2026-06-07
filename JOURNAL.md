@@ -152,3 +152,19 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Paleta de Colores "Woodcraft"**: Usamos tonalidades marrones oscuras (`--color-primary`) inspiradas en la madera y un tono ocre/caramelo (`--color-accent`) de contraste para llamadas a la acción (CTAs). Usamos un fondo off-white (`--color-bg`) en lugar de blanco puro para dar calidez y reducir la fatiga visual.
 >   - **Escalas Relativas con `rem`**: Definir fuentes y espaciados en `rem` (unidad relativa al tamaño base del navegador, usualmente 16px) es una gran práctica de accesibilidad. Si el usuario aumenta el zoom de texto en su navegador, el diseño se escala de forma fluida sin romperse.
 >   - **Micro-interacciones Orgánicas (`cubic-bezier`)**: Las variables de transición usan la función de tiempo `cubic-bezier(0.4, 0, 0.2, 1)`. A diferencia de las animaciones lineales aburridas, esta curva imita la física del mundo real acelerando rápido al inicio y frenando suavemente al final, aportando un aspecto sumamente interactivo y premium.
+
+> **[2026-06-07] - CSS Reset y Estilos Base (`css/main.css`)**
+> - **Qué se hizo:** Se aplicó un reinicio de estilos global (Reset) para unificar la visualización de la web en todos los navegadores y se definieron los estilos tipográficos y de fondo para la etiqueta `<body>`.
+> - **Explicación de la Lógica:**
+>   - **`box-sizing: border-box` Global**: Cambia el modelo de caja por defecto. Ahora, el ancho y alto definidos para cualquier elemento incluirán el `padding` y el `border`. Evita que las cajas "exploten" o se desborden al añadirles relleno, facilitando enormemente el cálculo de layouts.
+>   - **Eliminación de Margen y Relleno Inicial**: Homogeneiza la página eliminando los espaciados por defecto que aplican Chrome, Safari o Firefox en elementos como `body`, listas y títulos.
+>   - **Font Smoothing (Suavizado de Tipografía)**: Configura la renderización de texto a nivel de subpíxel para que las tipografías se lean más nítidas y limpias, evitando el efecto de "grosor artificial" en pantallas macOS y Windows.
+>   - **Estilo Base de Enlaces y Listas**: Eliminamos los subrayados de los enlaces (`text-decoration: none`) and los puntos/números de las listas (`list-style: none`) para tener un lienzo limpio. Los enlaces heredan el color del texto contenedor (`color: inherit`) de forma natural.
+
+> **[2026-06-07] - Clases de Utilidad de Estructura y Títulos (`css/main.css`)**
+> - **Qué se hizo:** Se añadieron clases utilitarias para centrar y estructurar el diseño del sitio (`.container`), alinear texto y estandarizar la tipografía de títulos y subtítulos de secciones comunes.
+> - **Explicación de la Lógica:**
+>   - **Contenedor Responsivo (`.container`)**: Centra y delimita horizontalmente el contenido de la web usando márgenes automáticos laterales y estableciendo un ancho máximo (`--max-width` = 1200px). Además, mediante una Media Query adaptamos el relleno lateral (más pequeño en móviles para ganar espacio útil y más amplio en pantallas de escritorio).
+>   - **Clases de Utilidad Atómicas**: Pequeñas clases enfocadas en una sola tarea (ej: `.text-center`, `.text-muted`, `.text-accent`). Nos permiten dar formato sutil de color o alineación en el HTML directamente, reduciendo la redundancia de código.
+>   - **Estandarización de Encabezados (`.section-title` y `.section-subtitle`)**: Asegura que todas las secciones del sitio (catálogo, categorías, proceso artesanal) tengan títulos perfectamente uniformes en tamaño, tipografía (*Playfair Display*) y espaciado. Los tamaños de fuente cambian de forma responsiva en pantallas medianas/grandes para mantener la armonía visual.
+
