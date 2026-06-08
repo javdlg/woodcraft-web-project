@@ -168,3 +168,13 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Clases de Utilidad Atómicas**: Pequeñas clases enfocadas en una sola tarea (ej: `.text-center`, `.text-muted`, `.text-accent`). Nos permiten dar formato sutil de color o alineación en el HTML directamente, reduciendo la redundancia de código.
 >   - **Estandarización de Encabezados (`.section-title` y `.section-subtitle`)**: Asegura que todas las secciones del sitio (catálogo, categorías, proceso artesanal) tengan títulos perfectamente uniformes en tamaño, tipografía (*Playfair Display*) y espaciado. Los tamaños de fuente cambian de forma responsiva en pantallas medianas/grandes para mantener la armonía visual.
 
+> **[2026-06-08] - Estilos del Encabezado y Navegación (`css/components.css`)**
+> - **Qué se hizo:** Se estilizó la cabecera principal (`.main-header`), el logotipo, el menú con efectos hover y el botón flotante del carrito con su badge indicador.
+> - **Explicación de la Lógica:**
+>   - **Cabecera Fija (`position: fixed`)**: Permite que el menú y el botón del carrito sigan visibles mientras el usuario navega (hace scroll) por la página, una práctica estándar y necesaria en e-commerce.
+>   - **Efecto de Desenfoque Translúcido (Glassmorphism)**: Usamos `background-color` con transparencia (`rgba`) y `backdrop-filter: blur(10px)`. Consigue un efecto esmerilado que difumina el contenido que pasa por debajo al hacer scroll, dando un aspecto estético premium y moderno.
+>   - **Transición Hover Avanzada (`::after`)**: Creamos la línea decorativa inferior de los enlaces usando un pseudoelemento `::after`. En lugar de animar el ancho (`width`), lo cual recalcula el diseño y es costoso para la CPU, animamos la escala horizontal (`transform: scaleX(...)`) con `transform-origin` dinámico. Esto dibuja la línea de izquierda a derecha en hover y la recoge en la misma dirección, logrando una animación muy fluida y optimizada.
+>   - **Posicionamiento del Badge del Carrito**: Usamos `position: absolute` referenciado a un contenedor `relative` (`.cart-toggle-btn`). Esto nos permite colocar el globo del contador flotando sobre la esquina superior derecha del botón.
+>   - **Menú Móvil Desplegable**: Usamos Media Queries para ocultar el menú de navegación horizontal en móviles y transformarlo en un bloque de ancho completo absoluto que cae por debajo de la cabecera. La visibilidad de este menú se activará al añadir la clase `.open` mediante JavaScript.
+
+

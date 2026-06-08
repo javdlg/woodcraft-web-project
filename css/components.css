@@ -1,0 +1,200 @@
+/* ==========================================================================
+   COMPONENTE: ENCABEZADO Y NAVEGACIÓN (.main-header)
+   ========================================================================== */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: rgba(250, 248, 245, 0.85); /* Fondo off-white translúcido */
+    backdrop-filter: blur(10px); /* Efecto Glassmorphism premium */
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+    z-index: 1000;
+    transition: var(--transition-normal);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--max-width);
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .header-container {
+        padding: 0 var(--space-lg);
+    }
+}
+
+/* Logotipo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-secondary);
+    font-size: var(--font-xl);
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.logo-icon {
+    font-size: 1.4rem;
+    color: var(--color-accent);
+}
+
+.logo-text span {
+    color: var(--color-accent);
+    font-weight: 400;
+}
+
+/* Menú de Navegación (Desktop) */
+.nav-menu ul {
+    display: flex;
+    gap: var(--space-xl);
+}
+
+.nav-link {
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--color-text-muted);
+    padding: var(--space-xs) 0;
+    position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--color-primary);
+}
+
+/* Subrayado animado para el hover en desktop */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Acciones de Cabecera (Botón Carrito y Hamburguesa) */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+/* Botón Carrito */
+.cart-toggle-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-round);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-card);
+    color: var(--color-primary);
+    transition: var(--transition-fast);
+}
+
+.cart-toggle-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 9px;
+    background-color: var(--color-accent);
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: var(--font-primary);
+    border: 2px solid var(--color-bg-card);
+}
+
+/* Toggle Menú Móvil */
+.mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-round);
+    background-color: var(--color-primary);
+    color: #ffffff;
+    font-size: 1.1rem;
+    transition: var(--transition-fast);
+}
+
+.mobile-menu-toggle:hover {
+    background-color: var(--color-accent);
+}
+
+/* ==========================================================================
+   RESPONSIVE: MENÚ MÓVIL
+   ========================================================================== */
+@media (max-width: 767px) {
+    .nav-menu {
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        background-color: var(--color-bg-card);
+        border-bottom: 1px solid var(--color-border);
+        padding: var(--space-md) 0;
+        box-shadow: var(--shadow-md);
+        display: none; /* Se activará agregando la clase .open desde JS */
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-menu.open {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-md);
+    }
+
+    .nav-link::after {
+        display: none; /* Desactivado en móvil */
+    }
+}
+
+@media (min-width: 768px) {
+    .mobile-menu-toggle {
+        display: none; /* Oculto en pantallas grandes */
+    }
+}
