@@ -321,3 +321,142 @@
     }
 }
 
+/* ==========================================================================
+   COMPONENTE: SECCIÓN CATEGORÍAS (.categories-section)
+   ========================================================================== */
+.categories-section {
+    padding: var(--space-3xl) 0;
+    background-color: var(--color-bg);
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+}
+
+/* Tarjeta de Categoría */
+.category-card {
+    position: relative;
+    height: 280px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-lg);
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* Imagen de fondo inyectada vía pseudoelemento para posibilitar zoom */
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform var(--transition-normal);
+    z-index: 1;
+}
+
+/* Imágenes específicas para cada categoría (de Unsplash de alta calidad) */
+#cat-card-cocina::before {
+    background-image: url('https://images.unsplash.com/photo-1541014741259-df5395b77a1a?auto=format&fit=crop&w=600&q=80');
+}
+
+#cat-card-banio::before {
+    background-image: url('https://images.unsplash.com/photo-1620626011160-9928f1b9b630?auto=format&fit=crop&w=600&q=80');
+}
+
+#cat-card-living::before {
+    background-image: url('https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=600&q=80');
+}
+
+#cat-card-jardineria::before {
+    background-image: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=600&q=80');
+}
+
+/* Overlay de gradiente para garantizar contraste del texto */
+.category-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to top,
+        rgba(34, 28, 25, 0.85) 0%,
+        rgba(34, 28, 25, 0.4) 60%,
+        rgba(34, 28, 25, 0.15) 100%
+    );
+    z-index: 2;
+    transition: background var(--transition-fast);
+}
+
+/* Información de la Categoría */
+.category-info {
+    position: relative;
+    z-index: 3;
+    transition: transform var(--transition-normal);
+}
+
+.category-info h3 {
+    font-family: var(--font-secondary);
+    font-size: var(--font-xl);
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.category-info p {
+    font-size: var(--font-sm);
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Micro-interacciones de Hover */
+.category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.category-card:hover::before {
+    transform: scale(1.08); /* Zoom sutil de la imagen sin alterar bordes */
+}
+
+.category-card:hover .category-overlay {
+    background: linear-gradient(
+        to top,
+        rgba(34, 28, 25, 0.9) 0%,
+        rgba(34, 28, 25, 0.5) 60%,
+        rgba(34, 28, 25, 0.3) 100%
+    );
+}
+
+.category-card:hover .category-info {
+    transform: translateY(-4px); /* Desplazamiento vertical del texto */
+}
+
+/* Responsive para grilla de categorías */
+@media (min-width: 576px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .categories-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .category-card {
+        height: 320px;
+    }
+}
+
+

@@ -184,3 +184,12 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Offset de Cabecera Fija (`padding-top: calc(...)`)**: Puesto que el header flota fijo arriba, restaría espacio útil y taparía la sección. Lo solucionamos calculando el relleno superior del Héroe sumando la altura del header más espaciado dinámico: `calc(var(--header-height) + var(--space-2xl))`.
 >   - **Efecto de Degradado Cálido Tridimensional**: Combinamos un `radial-gradient` y un `linear-gradient` en tonos beige y crema suave. Esto emula la iluminación cálida de un estudio de carpintería sobre madera, aportando volumen y sofisticación al fondo.
 >   - **Tipografía Fluida Responsiva**: El título del Héroe se escala desde `2rem` (32px) en dispositivos móviles hasta `3rem` (48px) a partir de 768px mediante media queries. Esto garantiza legibilidad y un balance jerárquico perfecto para dispositivos táctiles y pantallas grandes.
+
+> **[2026-06-09] - Estilos de Tarjetas de Categorías (`css/components.css`)**
+> - **Qué se hizo:** Se implementó el diseño de la grilla de categorías destacadas usando CSS Grid responsivo y se agregaron efectos visuales premium (zoom de imagen, oscurecimiento de overlay y desplazamiento de texto) en hover.
+> - **Explicación de la Lógica:**
+>   - **Grilla Responsiva (`.categories-grid`)**: Usamos CSS Grid estructurando las columnas dinámicamente con Media Queries: 1 columna en móviles, 2 columnas en tablets y 4 columnas en monitores de escritorio. Esto optimiza el flujo de lectura según el área de visualización.
+>   - **Zoom de Imagen Inteligente (`.category-card::before`)**: Colocar la foto de fondo en un pseudoelemento `::before` y animar su escala (`transform: scale(1.08)`) en hover es un truco premium. Como el contenedor padre tiene `overflow: hidden`, la foto se agranda sutilmente dentro de sus límites sin deformar el marco ni la tarjeta, aportando dinamismo visual.
+>   - **Garantía de Legibilidad (Overlay Gradiente)**: El elemento `.category-overlay` utiliza un degradado vertical oscuro (`linear-gradient` de abajo hacia arriba). Esto crea una base de contraste constante bajo el texto blanco, asegurando que se cumplan las normas de contraste de accesibilidad (WCAG) sin tapar por completo la foto de madera del fondo.
+>   - **Efecto de Desplazamiento del Texto (`.category-info`)**: Al hacer hover sobre la tarjeta, el texto se desliza levemente hacia arriba (`transform: translateY(-4px)`). Al combinarse con el zoom de la imagen que va en sentido contrario, crea un efecto de profundidad tridimensional.
+
