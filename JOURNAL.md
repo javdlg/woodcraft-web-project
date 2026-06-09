@@ -177,4 +177,10 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Posicionamiento del Badge del Carrito**: Usamos `position: absolute` referenciado a un contenedor `relative` (`.cart-toggle-btn`). Esto nos permite colocar el globo del contador flotando sobre la esquina superior derecha del botón.
 >   - **Menú Móvil Desplegable**: Usamos Media Queries para ocultar el menú de navegación horizontal en móviles y transformarlo en un bloque de ancho completo absoluto que cae por debajo de la cabecera. La visibilidad de este menú se activará al añadir la clase `.open` mediante JavaScript.
 
-
+> **[2026-06-08] - Estilos de Botones y Sección Héroe (`css/components.css`)**
+> - **Qué se hizo:** Se definió el sistema de botones reutilizables (`.btn`, `.btn-primary`, `.btn-secondary`) y se estilizó visualmente la sección Héroe principal (`.hero-section`) aplicando degradados y responsive design.
+> - **Explicación de la Lógica:**
+>   - **Sistema de Botones Reutilizable**: Establecemos estilos base con `.btn` (alineación flex, bordes redondeados y transiciones). `.btn-primary` (color acento ocre) incluye una sombra suave; en hover aplica un efecto de elevación física (`transform: translateY(-2px)`) con sombra más profunda. `.btn-secondary` utiliza un borde lineal (`outline`) que se invierte a fondo sólido al interactuar.
+>   - **Offset de Cabecera Fija (`padding-top: calc(...)`)**: Puesto que el header flota fijo arriba, restaría espacio útil y taparía la sección. Lo solucionamos calculando el relleno superior del Héroe sumando la altura del header más espaciado dinámico: `calc(var(--header-height) + var(--space-2xl))`.
+>   - **Efecto de Degradado Cálido Tridimensional**: Combinamos un `radial-gradient` y un `linear-gradient` en tonos beige y crema suave. Esto emula la iluminación cálida de un estudio de carpintería sobre madera, aportando volumen y sofisticación al fondo.
+>   - **Tipografía Fluida Responsiva**: El título del Héroe se escala desde `2rem` (32px) en dispositivos móviles hasta `3rem` (48px) a partir de 768px mediante media queries. Esto garantiza legibilidad y un balance jerárquico perfecto para dispositivos táctiles y pantallas grandes.
