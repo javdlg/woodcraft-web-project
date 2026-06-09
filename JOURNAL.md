@@ -193,3 +193,12 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Garantía de Legibilidad (Overlay Gradiente)**: El elemento `.category-overlay` utiliza un degradado vertical oscuro (`linear-gradient` de abajo hacia arriba). Esto crea una base de contraste constante bajo el texto blanco, asegurando que se cumplan las normas de contraste de accesibilidad (WCAG) sin tapar por completo la foto de madera del fondo.
 >   - **Efecto de Desplazamiento del Texto (`.category-info`)**: Al hacer hover sobre la tarjeta, el texto se desliza levemente hacia arriba (`transform: translateY(-4px)`). Al combinarse con el zoom de la imagen que va en sentido contrario, crea un efecto de profundidad tridimensional.
 
+> **[2026-06-09] - Estilos del Catálogo y Tarjetas de Producto (`css/components.css`)**
+> - **Qué se hizo:** Se maquetaron los botones de filtrado interactivos de catálogo y se definieron los estilos visuales responsivos para las tarjetas de productos (`.product-card`) junto con su indicador de carga.
+> - **Explicación de la Lógica:**
+>   - **Botones de Filtro Tipo Píldora**: Diseñamos los botones con bordes circulares y transiciones rápidas. El botón `.active` adopta el color ocre con una sombra paralela difusa para indicar claramente la categoría seleccionada.
+>   - **Grilla de Productos Responsiva (`.products-grid`)**: Configuración con CSS Grid en 3 columnas en ordenadores, 2 en tabletas y 1 en móviles, adaptándose al espacio horizontal para lucir las piezas de madera.
+>   - **Alineación del Spinner de Carga (`grid-column: 1 / -1`)**: Para centrar el indicador de carga en la grilla, usamos `grid-column: 1 / -1`. Esto hace que el elemento ocupe todas las columnas disponibles y se posicione en el centro de la pantalla.
+>   - **Tarjetas Flex-Column con Botones Alineados**: Las tarjetas de producto usan `display: flex` con dirección de columna. Agregamos `margin-top: auto` al contenedor de acciones (`.product-actions`). Esto asegura que, incluso si un producto tiene un título más largo que otro, el botón de compra siempre se mantenga alineado en la base de la tarjeta.
+>   - **Zoom sutil de Producto y Elevación**: Al hacer hover, la tarjeta se eleva (`translateY(-6px)`) con sombra más profunda, y la foto del producto hace un zoom suave de `1.05`.
+
