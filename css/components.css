@@ -633,5 +633,138 @@
     margin-top: auto; /* Empuja las acciones al fondo */
 }
 
+/* ==========================================================================
+   COMPONENTE: SECCIÓN PROCESO ARTESANAL (.process-section)
+   ========================================================================== */
+.process-section {
+    padding: var(--space-3xl) 0;
+    background-color: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+}
+
+.process-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+}
+
+.process-image,
+.process-content {
+    width: 100%;
+}
+
+/* Contenedor del Placeholder de Imagen */
+.image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    background: linear-gradient(135deg, #e9decf 0%, #dbcbba 100%);
+    border-radius: var(--radius-lg);
+    color: var(--color-primary);
+    font-size: 3.5rem;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de veta de madera sutil giratoria en el fondo del placeholder */
+.image-placeholder::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    border-radius: 40%;
+    background-color: rgba(255, 255, 255, 0.05);
+    top: -50%;
+    left: -50%;
+    animation: rotateWood 25s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.image-placeholder i {
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes rotateWood {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Contenido y Pasos */
+.process-content h2 {
+    margin-bottom: var(--space-md);
+}
+
+.process-content > p {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+    font-size: var(--font-base);
+}
+
+.process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.process-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+}
+
+/* Número Decorativo del Paso */
+.step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-accent);
+    color: #ffffff;
+    font-size: var(--font-base);
+    font-weight: 700;
+    border-radius: var(--radius-round);
+    flex-shrink: 0;
+    box-shadow: 0 3px 6px rgba(192, 125, 83, 0.2);
+}
+
+.process-steps strong {
+    display: block;
+    font-size: var(--font-base);
+    color: var(--color-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.process-steps p {
+    font-size: var(--font-sm);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+/* Responsive para Pantallas Medianas y Grandes (Tablets y Desktop) */
+@media (min-width: 768px) {
+    .process-container {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-3xl);
+    }
+    
+    .process-image,
+    .process-content {
+        flex: 1;
+    }
+    
+    .image-placeholder {
+        height: 420px;
+        font-size: 5rem;
+    }
+}
+
+
 
 

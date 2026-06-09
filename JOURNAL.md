@@ -202,3 +202,11 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Tarjetas Flex-Column con Botones Alineados**: Las tarjetas de producto usan `display: flex` con dirección de columna. Agregamos `margin-top: auto` al contenedor de acciones (`.product-actions`). Esto asegura que, incluso si un producto tiene un título más largo que otro, el botón de compra siempre se mantenga alineado en la base de la tarjeta.
 >   - **Zoom sutil de Producto y Elevación**: Al hacer hover, la tarjeta se eleva (`translateY(-6px)`) con sombra más profunda, y la foto del producto hace un zoom suave de `1.05`.
 
+> **[2026-06-09] - Estilos de la Sección Proceso Artesanal (`css/components.css`)**
+> - **Qué se hizo:** Se maquetó la sección de proceso en dos columnas responsivas y se estilizó el contenedor de imagen placeholder con un fondo animado en rotación y la lista numerada de pasos.
+> - **Explicación de la Lógica:**
+>   - **Maquetación Responsiva de Columnas**: Mediante Flexbox alternamos la dirección: `column` por defecto en móviles y `row` a partir de 768px. En desktop, ambas columnas (`.process-image` y `.process-content`) reciben un valor de `flex: 1` para distribuirse al 50% de ancho de forma exacta y elegante.
+>   - **Animación del Fondo del Placeholder (`rotateWood`)**: Creamos un efecto visual premium usando un pseudoelemento `::after` rotando infinitamente a baja velocidad. Mediante bordes redondeados al 40% y una rotación de 360 grados, simulamos vetas orgánicas de madera líquida o anillos de árboles moviéndose en segundo plano, otorgando un toque interactivo premium sin recurrir a GIFs o videos pesados.
+>   - **Resiliencia en Contenedores Circulares (`flex-shrink: 0`)**: Los círculos numerados de los pasos (`.step-num`) tienen aplicado `flex-shrink: 0`. Esto garantiza que los navegadores no achaten el círculo si el texto de la descripción a su lado se vuelve muy largo o empuja los límites laterales.
+
+
