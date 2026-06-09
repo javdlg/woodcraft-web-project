@@ -367,11 +367,11 @@
 
 /* Imágenes específicas para cada categoría (de Unsplash de alta calidad) */
 #cat-card-cocina::before {
-    background-image: url('https://images.unsplash.com/photo-1541014741259-df5395b77a1a?auto=format&fit=crop&w=600&q=80');
+    background-image: url('https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=600&q=80');
 }
 
 #cat-card-banio::before {
-    background-image: url('https://images.unsplash.com/photo-1620626011160-9928f1b9b630?auto=format&fit=crop&w=600&q=80');
+    background-image: url('https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=600&q=80');
 }
 
 #cat-card-living::before {
