@@ -209,4 +209,13 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Animación del Fondo del Placeholder (`rotateWood`)**: Creamos un efecto visual premium usando un pseudoelemento `::after` rotando infinitamente a baja velocidad. Mediante bordes redondeados al 40% y una rotación de 360 grados, simulamos vetas orgánicas de madera líquida o anillos de árboles moviéndose en segundo plano, otorgando un toque interactivo premium sin recurrir a GIFs o videos pesados.
 >   - **Resiliencia en Contenedores Circulares (`flex-shrink: 0`)**: Los círculos numerados de los pasos (`.step-num`) tienen aplicado `flex-shrink: 0`. Esto garantiza que los navegadores no achaten el círculo si el texto de la descripción a su lado se vuelve muy largo o empuja los límites laterales.
 
+> **[2026-06-12] - Estilos de Panel Lateral del Carrito y Overlay (`css/components.css`)**
+> - **Qué se hizo:** Se estilizó el panel del carrito desplegable (`.cart-drawer`) con transiciones de deslizamiento lateral, la capa oscura con desenfoque (`.cart-drawer-overlay`) y la estructura de los productos del carrito.
+> - **Explicación de la Lógica:**
+>   - **Transición de Deslizamiento Lateral Fluido**: El carrito se oculta fuera de la pantalla mediante `transform: translateX(100%)` y se muestra volviendo a `translateX(0)`. Utilizar transformaciones CSS en lugar de animar propiedades de posición física (como `right: -440px`) permite que el navegador realice la animación por aceleración de hardware (GPU), garantizando transiciones suaves a 60fps sin tirones.
+>   - **Foco Visual en la Compra (Overlay + Blur)**: La capa `.cart-drawer-overlay` usa un fondo semitransparente oscuro y `backdrop-filter: blur(4px)`. Esto oscurece y difumina levemente el contenido del fondo del sitio al abrir el carrito, enfocando la atención del usuario en el listado de productos a comprar.
+>   - **Micro-interacciones Lúdicas**: El botón para cerrar (`.cart-close-btn`) incluye una transición de rotación (`transform: rotate(90deg)`) al posar el cursor, aportando dinamismo visual de alta calidad.
+>   - **Estructura del Listado de Compra**: Cada `.cart-item` alinea la imagen (con ancho fijo para evitar distorsiones), los detalles y el botón de remover en una grilla flex. Se separan con líneas punteadas (`dashed`) sutiles. El botón de eliminar se escala y cambia a rojo de alerta (`#d9534f`) en hover para dar feedback visual antes de realizar una acción destructiva.
+
+
 
