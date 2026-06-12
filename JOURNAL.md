@@ -217,5 +217,14 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Micro-interacciones Lúdicas**: El botón para cerrar (`.cart-close-btn`) incluye una transición de rotación (`transform: rotate(90deg)`) al posar el cursor, aportando dinamismo visual de alta calidad.
 >   - **Estructura del Listado de Compra**: Cada `.cart-item` alinea la imagen (con ancho fijo para evitar distorsiones), los detalles y el botón de remover en una grilla flex. Se separan con líneas punteadas (`dashed`) sutiles. El botón de eliminar se escala y cambia a rojo de alerta (`#d9534f`) en hover para dar feedback visual antes de realizar una acción destructiva.
 
+> **[2026-06-12] - Estilos del Pie de Página (Footer) (`css/components.css`)**
+> - **Qué se hizo:** Se maquetó y estilizó la sección de pie de página (`.main-footer`) usando grillas responsivas asimétricas para desktop y se aplicaron animaciones en los menús y enlaces de redes sociales.
+> - **Explicación de la Lógica:**
+>   - **Grilla Asimétrica en Escritorio (`2fr 1fr 1.2fr`)**: A partir de 768px, el footer pasa de columna única a una grilla de tres columnas. Usar proporciones asimétricas permite darle más peso visual a la primera columna (el branding y logo de Woodcraft) y organizar los enlaces rápidos y contacto de forma más compacta y equilibrada.
+>   - **Botones Sociales Flotantes con Sombra Ocre**: Los enlaces de redes sociales se elevan (`translateY(-3px)`) al hacer hover, y cambian a color de acento ocre proyectando una sombra difuminada con el mismo color. Este tipo de sombras coloreadas de baja opacidad son una tendencia moderna que aporta alta calidad visual.
+>   - **Desplazamiento Interactivo en Enlaces Rápidos**: Al pasar el ratón por los enlaces de navegación, estos no solo cambian de color, sino que se desplazan ligeramente hacia la derecha (`padding-left: 4px`). Esta micro-animación le da dinamismo al pie de página sin entorpecer la lectura.
+>   - **Línea de Copyright de Cierre**: Ubicada en la base del footer (`.footer-bottom`), separada por una delgada línea semitransparente. Usa el tamaño de fuente más pequeño de nuestro sistema (`--font-xs`) y un tono apagado para marcar el final de la página de forma limpia.
+
+
 
 
