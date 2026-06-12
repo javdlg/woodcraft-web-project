@@ -225,6 +225,36 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Desplazamiento Interactivo en Enlaces Rápidos**: Al pasar el ratón por los enlaces de navegación, estos no solo cambian de color, sino que se desplazan ligeramente hacia la derecha (`padding-left: 4px`). Esta micro-animación le da dinamismo al pie de página sin entorpecer la lectura.
 >   - **Línea de Copyright de Cierre**: Ubicada en la base del footer (`.footer-bottom`), separada por una delgada línea semitransparente. Usa el tamaño de fuente más pequeño de nuestro sistema (`--font-xs`) y un tono apagado para marcar el final de la página de forma limpia.
 
+> **[2026-06-12] - Decisión Arquitectónica: Pivot a Backend en Python (FastAPI)**
+> - **Qué se hizo:** Se redefinió la arquitectura del proyecto de una web estática pura a una aplicación **Full-Stack**. Los productos del catálogo de madera no se declararán estáticamente en el JS del navegador, sino que se servirán de forma dinámica desde una API REST construida en **Python con FastAPI**.
+> - **Explicación de la Lógica:**
+>   - **Alineación con Objetivos de Carrera (Foco en Python)**: Transformar el e-commerce en un proyecto full-stack permite exhibir competencias sólidas en Python (diseño de APIs, serialización de datos y manejo de servidores), haciéndolo altamente valioso para ofertas de empleo de desarrollo backend con Python.
+>   - **Por qué FastAPI**: Es el microframework asíncrono moderno estándar en la industria Python actual. Es extremadamente rápido (gracias a Starlette y Pydantic), valida los datos automáticamente y genera documentación OpenAPI de manera nativa sin configuraciones adicionales.
+>   - **Desacoplamiento e Integración**: El frontend de JavaScript se comunicará con el backend de Python mediante peticiones HTTP asíncronas usando la Fetch API. Esto replica con total fidelidad el funcionamiento real de sistemas de producción, donde la interfaz visual y la lógica de datos están completamente separadas y se comunican mediante JSON.
+
+> **[2026-06-12] - Creación de Módulo de Utilidades (`js/utils.js`)**
+> - **Qué se hizo:** Se creó el archivo `js/utils.js` de helpers del frontend, implementando atajos para selección de elementos del DOM y un formateador de divisa nativo para Pesos Chilenos (CLP).
+> - **Explicación de la Lógica:**
+>   - **Modularidad ES6 (`export`)**: El uso de la palabra reservada `export` permite exponer estas funciones a otros archivos JavaScript, manteniendo el código ordenado y encapsulado en lugar de declarar variables globales en el navegador.
+>   - **Atajos del DOM (`$` y `$$`)**: Simplifican la escritura de `document.querySelector` y `document.querySelectorAll`. Permiten pasar un elemento padre como segundo argumento, restringiendo las búsquedas al interior de un nodo específico para mejorar el rendimiento de la selección.
+>   - **API de Internacionalización Nativa (`Intl.NumberFormat`)**: En lugar de concatenar cadenas o usar expresiones regulares para agregar puntos de miles, recurrimos a la API oficial del navegador. Configurarla con el locale `'es-CL'` (español de Chile) y la moneda `'CLP'` nos formatea los precios automáticamente a pesos chilenos (sin decimales y con puntos de millares).
+
+> **[2026-06-12] - Análisis de Viabilidad de Carrera (Python Backend vs JS) y Modularidad de Marca**
+> - **Qué se hizo:** Se documentó formalmente en la bitácora la justificación estratégica para la división frontend-backend y las pautas técnicas de desacoplamiento de marca.
+> - **Explicación de la Lógica:**
+>   - **Equilibrio de Stack (JavaScript frontend + Python backend):** Aunque el foco profesional es Python, mantener el desarrollo frontend en JavaScript limpio (sin frameworks que oculten los fundamentos) es clave. Un desarrollador backend de Python que sabe cómo el cliente consume sus APIs (CORS, JSON, asincronía) y manipula el DOM es infinitamente más valioso y autónomo.
+>   - **Arquitectura de API Desacoplada (FastAPI):** Al separar el frontend y backend, mostramos una arquitectura alineada con los estándares de la industria moderna. El backend de Python expone servicios REST que pueden ser consultados por esta web en Vanilla JS, o en el futuro por una app móvil o un dashboard administrativo.
+>   - **Desacoplamiento de Marca e Identidad:** Estructurar el proyecto usando CSS Variables (`:root`) y mapeo dinámico de productos desde un JSON de la API previene el "hardcoding". Esto garantiza que renombrar el proyecto sea trivial (un cambio en el logo de HTML y variables CSS) demostrando buenas prácticas de abstracción de software.
+
+> **[2026-06-12] - Implementación de Interactividad de la UI (`js/app.js`)**
+> - **Qué se hizo:** Se programaron los controladores de interfaz en Vanilla JS para manejar los estados activos del menú móvil (hamburguesa) y el panel lateral del carrito de compras (drawer).
+> - **Explicación de la Lógica:**
+>   - **Manejo de Estados con Clases CSS (`.open` y `.active`):** En lugar de manipular directamente las propiedades de estilo en JS (como `element.style.display = 'block'`), añadimos o removemos clases. Esto mantiene el principio de separación de responsabilidades, delegando las transiciones y transformaciones fluidas por hardware al motor de renderizado de CSS.
+>   - **Bloqueo del Scroll del Body (`overflow: hidden`):** Al abrir el carrito lateral, desactivamos el scroll del cuerpo principal. Esto previene el "scroll secundario" accidental en el fondo, mejorando significativamente la usabilidad táctil móvil.
+>   - **Accesibilidad ARIA Dinámica:** Sincronizamos las interacciones actualizando programáticamente los atributos `aria-expanded` y `aria-hidden` para que los lectores de pantalla y navegadores interactúen correctamente con las capas superpuestas.
+
+
+
 
 
 
