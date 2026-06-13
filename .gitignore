@@ -69,3 +69,6 @@ JOURNAL.md
 
 # Python
 __pycache__/
+
+# JSON Files
+orders.json
