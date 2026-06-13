@@ -8,6 +8,7 @@
  */
 
 import { $, $$ } from './utils.js';
+import './gallery.js';
 
 // Elementos del DOM para la navegación móvil
 const navMenu = $('#nav-menu');

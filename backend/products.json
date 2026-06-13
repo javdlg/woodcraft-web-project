@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "name": "Tabla de Picar 'Roble Centenario'",
+        "category": "cocina",
+        "price": 28900,
+        "image": "https://images.unsplash.com/photo-1606836591695-4d58a73efa1e?auto=format&fit=crop&w=600&q=80",
+        "description": "Tabla de picar premium elaborada con madera de roble recuperado. Curada con aceite mineral y cera de abeja natural.",
+        "badge": "Destacado",
+        "stock": 10
+    },
+    {
+        "id": 2,
+        "name": "Set de Cucharas de Cocina 'Haya'",
+        "category": "cocina",
+        "price": 14900,
+        "image": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=600&q=80",
+        "description": "Juego de 3 utensilios de madera de haya pulidos a mano. No rayan las sartenes y son extremadamente duraderos.",
+        "badge": null,
+        "stock": 15
+    },
+    {
+        "id": 3,
+        "name": "Jabonera Orgánica de Coihue",
+        "category": "baño",
+        "price": 9500,
+        "image": "https://images.unsplash.com/photo-1609172765488-5111451f3b3d?auto=format&fit=crop&w=600&q=80",
+        "description": "Jabonera con ranuras de drenaje rápido, tallada en madera de coihue resistente a la humedad constante.",
+        "badge": "Eco-friendly",
+        "stock": 25
+    },
+    {
+        "id": 4,
+        "name": "Organizador de Baño 'Raulí'",
+        "category": "baño",
+        "price": 22000,
+        "image": "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=600&q=80",
+        "description": "Caja organizadora modular de madera de raulí con tratamiento de impermeabilización ecológica.",
+        "badge": "Nuevo",
+        "stock": 8
+    },
+    {
+        "id": 5,
+        "name": "Mesa Auxiliar Rústica de Ciprés",
+        "category": "living",
+        "price": 65000,
+        "image": "https://images.unsplash.com/photo-1532372320572-cda25653a26d?auto=format&fit=crop&w=600&q=80",
+        "description": "Mesa lateral hecha de rodaja de ciprés natural con vetas marcadas y patas de acero negro estilo hairpin.",
+        "badge": "Pieza Única",
+        "stock": 3
+    },
+    {
+        "id": 6,
+        "name": "Posavasos Geométricos 'Alerce' (Set de 6)",
+        "category": "living",
+        "price": 12900,
+        "image": "https://images.unsplash.com/photo-1565192647048-f997ed87f5e2?auto=format&fit=crop&w=600&q=80",
+        "description": "Conjunto de 6 posavasos de alerce tallados con patrones geométricos sutiles. Incluye soporte de madera.",
+        "badge": null,
+        "stock": 20
+    },
+    {
+        "id": 7,
+        "name": "Portamaceta Flotante 'Lenga'",
+        "category": "jardineria",
+        "price": 18500,
+        "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=600&q=80",
+        "description": "Estructura colgante para macetas pequeñas, elaborada en madera de lenga con cuerdas de algodón natural.",
+        "badge": "Popular",
+        "stock": 12
+    },
+    {
+        "id": 8,
+        "name": "Jardinera Escalonada de Pino Oregón",
+        "category": "jardineria",
+        "price": 42000,
+        "image": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=600&q=80",
+        "description": "Jardinera vertical de 3 niveles para hierbas o flores, tratada especialmente para intemperie.",
+        "badge": null,
+        "stock": 5
+    }
+]

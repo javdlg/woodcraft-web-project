@@ -23,18 +23,17 @@ export const $ = (selector, parent = document) => parent.querySelector(selector)
 export const $$ = (selector, parent = document) => parent.querySelectorAll(selector);
 
 /**
- * Formatea un número decimal/entero a divisa en Pesos Chilenos (CLP).
- * La madera de este taller se comercializa localmente.
+ * Formatea un número decimal/entero a divisa en Pesos Argentinos (ARS).
+ * La madera de este taller se comercializa localmente en Buenos Aires.
  * @param {number} amount - El valor numérico a formatear.
  * @returns {string} El valor formateado (ej. $15.990).
  */
 export const formatPrice = (amount) => {
     // Usamos el constructor nativo de JS Intl.NumberFormat para formateo internacional.
-    // Esto garantiza que la divisa se muestre según las normas oficiales chilenas:
-    // Pesos Chilenos (CLP) no llevan decimales y usan puntos para separar miles.
-    return new Intl.NumberFormat('es-CL', {
+    // Esto garantiza que la divisa se muestre según las normas oficiales de Argentina (es-AR, ARS).
+    return new Intl.NumberFormat('es-AR', {
         style: 'currency',
-        currency: 'CLP',
+        currency: 'ARS',
         minimumFractionDigits: 0
     }).format(amount);
 };

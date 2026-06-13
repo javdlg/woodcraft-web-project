@@ -233,11 +233,11 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Desacoplamiento e Integración**: El frontend de JavaScript se comunicará con el backend de Python mediante peticiones HTTP asíncronas usando la Fetch API. Esto replica con total fidelidad el funcionamiento real de sistemas de producción, donde la interfaz visual y la lógica de datos están completamente separadas y se comunican mediante JSON.
 
 > **[2026-06-12] - Creación de Módulo de Utilidades (`js/utils.js`)**
-> - **Qué se hizo:** Se creó el archivo `js/utils.js` de helpers del frontend, implementando atajos para selección de elementos del DOM y un formateador de divisa nativo para Pesos Chilenos (CLP).
+> - **Qué se hizo:** Se creó el archivo `js/utils.js` de helpers del frontend, implementando atajos para selección de elementos del DOM y un formateador de divisa nativo para Pesos Argentinos (ARS).
 > - **Explicación de la Lógica:**
 >   - **Modularidad ES6 (`export`)**: El uso de la palabra reservada `export` permite exponer estas funciones a otros archivos JavaScript, manteniendo el código ordenado y encapsulado en lugar de declarar variables globales en el navegador.
 >   - **Atajos del DOM (`$` y `$$`)**: Simplifican la escritura de `document.querySelector` y `document.querySelectorAll`. Permiten pasar un elemento padre como segundo argumento, restringiendo las búsquedas al interior de un nodo específico para mejorar el rendimiento de la selección.
->   - **API de Internacionalización Nativa (`Intl.NumberFormat`)**: En lugar de concatenar cadenas o usar expresiones regulares para agregar puntos de miles, recurrimos a la API oficial del navegador. Configurarla con el locale `'es-CL'` (español de Chile) y la moneda `'CLP'` nos formatea los precios automáticamente a pesos chilenos (sin decimales y con puntos de millares).
+>   - **API de Internacionalización Nativa (`Intl.NumberFormat`)**: En lugar de concatenar cadenas o usar expresiones regulares para agregar puntos de miles, recurrimos a la API oficial del navegador. Configurarla con el locale `'es-AR'` (español de Argentina) y la moneda `'ARS'` nos formatea los precios automáticamente a pesos argentinos (sin decimales y con puntos de millares).
 
 > **[2026-06-12] - Análisis de Viabilidad de Carrera (Python Backend vs JS) y Modularidad de Marca**
 > - **Qué se hizo:** Se documentó formalmente en la bitácora la justificación estratégica para la división frontend-backend y las pautas técnicas de desacoplamiento de marca.
@@ -252,6 +252,22 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Manejo de Estados con Clases CSS (`.open` y `.active`):** En lugar de manipular directamente las propiedades de estilo en JS (como `element.style.display = 'block'`), añadimos o removemos clases. Esto mantiene el principio de separación de responsabilidades, delegando las transiciones y transformaciones fluidas por hardware al motor de renderizado de CSS.
 >   - **Bloqueo del Scroll del Body (`overflow: hidden`):** Al abrir el carrito lateral, desactivamos el scroll del cuerpo principal. Esto previene el "scroll secundario" accidental en el fondo, mejorando significativamente la usabilidad táctil móvil.
 >   - **Accesibilidad ARIA Dinámica:** Sincronizamos las interacciones actualizando programáticamente los atributos `aria-expanded` y `aria-hidden` para que los lectores de pantalla y navegadores interactúen correctamente con las capas superpuestas.
+
+> **[2026-06-13] - Desarrollo del Servicio API REST (`backend/main.py` y `backend/products.json`)**
+> - **Qué se hizo:** Se inicializó el servicio backend en Python utilizando **FastAPI** para servir los datos del catálogo de manera dinámica, y se modelaron los productos en un archivo JSON local.
+> - **Explicación de la Lógica:**
+>   - **Políticas de CORS (Cross-Origin Resource Sharing):** Al configurar `CORSMiddleware` con `allow_origins=["*"]`, habilitamos la comunicación bidireccional entre el cliente (que corre en un puerto o protocolo local) y nuestro servidor de Python (en el puerto 8000). Sin esto, el navegador bloquearía la petición por motivos de seguridad (*Same-Origin Policy*).
+>   - **Carga de Datos Desacoplada (`json.load`):** Los productos de madera se leen desde un archivo JSON a demanda en cada solicitud. Esto reduce el acoplamiento y nos da flexibilidad para modificar el archivo `products.json` y ver los cambios inmediatamente reflejados en la API sin reiniciar el proceso de FastAPI.
+>   - **Parámetros de Consulta (Query Params):** El endpoint `/api/products` acepta un filtro opcional `category` mediante una consulta tipo `/api/products?category=cocina`. Esto delega la carga del filtrado al servidor, lo cual es óptimo y es un estándar industrial para reducir el ancho de banda consumido en dispositivos cliente.
+
+> **[2026-06-13] - Lógica del Catálogo Dinámico y Resiliencia en Red (`js/gallery.js`)**
+> - **Qué se hizo:** Se implementó el catálogo dinámico de productos integrando llamadas asíncronas (`fetch`) a la API de FastAPI, el filtrado dinámico mediante Event Delegation y un mecanismo de recuperación ante desconexión (Redundancy Fallback).
+> - **Explicación de la Lógica:**
+>   - **Manejo Asíncrono Resiliente (Fallback Local):** Las peticiones de red pueden fallar (servidor apagado, problemas de DNS, etc.). Envolvemos la llamada `fetch` en una estructura `try/catch` con un `AbortController` (timeout de 3 segundos). Si la API está offline, el código atrapa la excepción y carga automáticamente un listado `FALLBACK_PRODUCTS` local. Esto garantiza un sitio web 100% operativo bajo cualquier circunstancia.
+>   - **Inyección HTML Dinámica Segura:** Se utiliza el método `Array.prototype.map` para transformar los objetos cargados en cadenas HTML estructuradas, insertándolos mediante `innerHTML` en el contenedor `#products-grid`. Esto desacopla completamente el diseño de los datos.
+>   - **Event Delegation (Filtros):** Escuchamos los eventos `click` en el contenedor padre `#filter-container` en lugar de adjuntar escuchadores individuales en cada botón. Al hacer clic, detectamos el botón interactuado mediante `e.target.closest('.filter-btn')`, leemos su atributo `data-filter` y gatillamos la consulta con query parameters correspondiente a FastAPI.
+
+
 
 
 
