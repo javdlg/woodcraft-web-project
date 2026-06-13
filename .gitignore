@@ -66,3 +66,6 @@ coverage/
 
 # Developer Journal
 JOURNAL.md
+
+# Python
+__pycache__/
