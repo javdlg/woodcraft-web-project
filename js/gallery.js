@@ -99,6 +99,18 @@ const FALLBACK_PRODUCTS = [
 let currentProducts = [];
 
 /**
+ * Busca un producto por su ID en el catálogo actualmente cargado (o en el listado local de respaldo).
+ * Permite al carrito acceder a la información de los productos de forma síncrona y resiliente.
+ * @param {number|string} id - ID del producto.
+ * @returns {Object|null} El objeto de producto encontrado.
+ */
+export const getProductById = (id) => {
+    const idNum = parseInt(id, 10);
+    return currentProducts.find(p => p.id === idNum) || FALLBACK_PRODUCTS.find(p => p.id === idNum) || null;
+};
+
+
+/**
  * Renderiza el catálogo de productos en el contenedor HTML.
  * @param {Array} products - Lista de objetos de producto a renderizar.
  */

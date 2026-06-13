@@ -267,6 +267,14 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Inyección HTML Dinámica Segura:** Se utiliza el método `Array.prototype.map` para transformar los objetos cargados en cadenas HTML estructuradas, insertándolos mediante `innerHTML` en el contenedor `#products-grid`. Esto desacopla completamente el diseño de los datos.
 >   - **Event Delegation (Filtros):** Escuchamos los eventos `click` en el contenedor padre `#filter-container` en lugar de adjuntar escuchadores individuales en cada botón. Al hacer clic, detectamos el botón interactuado mediante `e.target.closest('.filter-btn')`, leemos su atributo `data-filter` y gatillamos la consulta con query parameters correspondiente a FastAPI.
 
+> **[2026-06-13] - Gestor del Carrito de Compras y Persistencia Local (`js/cart.js`)**
+> - **Qué se hizo:** Se programó el módulo del carrito de compras en JavaScript para gestionar de forma reactiva el estado de compra, persistiendo los datos con la Web Storage API (`localStorage`) y sincronizando la UI dinámicamente.
+> - **Explicación de la Lógica:**
+>   - **Persistencia con LocalStorage:** La Web Storage API nos permite guardar cadenas de texto en el navegador del usuario que sobreviven a reinicios o recargas de la página. Usamos `JSON.stringify` para serializar el array de objetos del carrito al guardar, y `JSON.parse` para restaurar el estado al iniciar la app.
+>   - **Event Delegation en Elementos Dinámicos:** Las tarjetas de producto en el catálogo y los ítems dentro del carrito se inyectan dinámicamente vía JS. Adjuntar escuchadores de eventos directamente a elementos que aún no existen en el HTML fallaría. Por ello, aplicamos delegación de eventos escuchando los clics en los contenedores padres permanentes (`#products-grid` y `#cart-items-container`), interceptando el click mediante `e.target.closest()` y leyendo el atributo `data-id` para operar sobre el producto correcto.
+>   - **Retroalimentación de Usabilidad (Premium UX):** Cuando el usuario añade un producto, el sistema calcula el nuevo estado y ejecuta programáticamente `openCart()` para deslizar el drawer del carrito en pantalla. Esto da un feedback inmediato y satisfactorio de que el producto se agregó con éxito.
+
+
 
 
 
