@@ -274,6 +274,14 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Event Delegation en Elementos Dinámicos:** Las tarjetas de producto en el catálogo y los ítems dentro del carrito se inyectan dinámicamente vía JS. Adjuntar escuchadores de eventos directamente a elementos que aún no existen en el HTML fallaría. Por ello, aplicamos delegación de eventos escuchando los clics en los contenedores padres permanentes (`#products-grid` y `#cart-items-container`), interceptando el click mediante `e.target.closest()` y leyendo el atributo `data-id` para operar sobre el producto correcto.
 >   - **Retroalimentación de Usabilidad (Premium UX):** Cuando el usuario añade un producto, el sistema calcula el nuevo estado y ejecuta programáticamente `openCart()` para deslizar el drawer del carrito en pantalla. Esto da un feedback inmediato y satisfactorio de que el producto se agregó con éxito.
 
+> **[2026-06-13] - API de Checkout y Esquemas de Validación (`backend/main.py`)**
+> - **Qué se hizo:** Se implementó el endpoint `POST /api/checkout` en la API de FastAPI para procesar órdenes de compra, agregando esquemas de validación de datos con **Pydantic** y guardando los pedidos en `orders.json`.
+> - **Explicación de la Lógica:**
+>   - **Validación con Pydantic (`BaseModel`):** Creamos las clases `CartItem` y `CheckoutRequest`. Pydantic intercepta automáticamente el cuerpo de las solicitudes entrantes en formato JSON y valida que los tipos de datos coincidan (ej. ID entero, precio flotante positivo y cantidad positiva). Si falla, devuelve de inmediato un código HTTP 422 detallando el error, lo cual protege nuestra lógica de negocio en el backend.
+>   - **Cálculo de Totales del Lado del Servidor:** Aunque el frontend ya calcula el subtotal para mostrárselo al usuario, el servidor de Python vuelve a sumar `price * quantity` para todos los productos recibidos. Es una regla de seguridad de e-commerce crítica: nunca se debe confiar en el precio enviado directamente por el cliente, ya que este podría haber sido manipulado.
+>   - **Persistencia de Órdenes (`orders.json`):** Al recibir una orden válida, leemos las órdenes previas de `orders.json`, le añadimos el nuevo pedido con un ID de orden formateado en tiempo real (`ORD-AAAAMMDD-HHMM-RAND`) y lo escribimos de vuelta. Esto simula el funcionamiento de una inserción en una base de datos en la nube.
+
+
 
 
 
