@@ -8,7 +8,7 @@
 
 import { $, $$, formatPrice } from './utils.js';
 import { getProductById } from './gallery.js';
-import { openCart } from './app.js';
+import { openCart, closeCart } from './app.js';
 
 // Nombre de la clave para almacenamiento en LocalStorage
 const STORAGE_KEY = 'woodcraft_cart_items';
@@ -238,12 +238,48 @@ const initCart = () => {
         });
     }
 
-    // 4. Conectar botón de checkout con feedback estético básico
+    // 4. Conectar botón de checkout con la API de Python
     const checkoutBtn = $('#cart-checkout-btn');
     if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', () => {
-            alert('¡Gracias por tu interés! Lógica de pasarela de pago simulada. Próximamente se integrará MercadoPago en el backend.');
-            clearCart();
+        checkoutBtn.addEventListener('click', async () => {
+            // Evitar doble envío deshabilitando el botón temporalmente
+            checkoutBtn.disabled = true;
+            const originalText = checkoutBtn.textContent;
+            checkoutBtn.textContent = 'Procesando pedido...';
+
+            try {
+                // Hacemos el POST asíncrono enviando los datos del carrito en formato JSON
+                const response = await fetch('http://127.0.0.1:8000/api/checkout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ items: cart })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error en el servidor: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // Mostrar un modal/alerta estética confirmando la compra
+                alert(`📦 ¡Pedido realizado con éxito!\n\nCódigo de Orden: ${data.order_id}\nTotal procesado: ${formatPrice(data.total)}\n\nTu base de datos local 'orders.json' ha registrado este pedido.`);
+                
+                // Limpiamos el carrito local
+                clearCart();
+                closeCart();
+
+            } catch (error) {
+                console.error('Error durante el checkout:', error);
+                
+                // Mensaje en caso de que la API REST esté offline
+                alert('⚠️ No se pudo conectar con el servidor de pago de Python.\n\nPor favor, enciende la API en tu terminal (uvicorn backend.main:app --reload) e inténtalo de nuevo.');
+            } finally {
+                // Restauramos el botón a su estado original
+                checkoutBtn.disabled = false;
+                checkoutBtn.textContent = originalText;
+            }
         });
     }
 };

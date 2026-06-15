@@ -281,6 +281,14 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Cálculo de Totales del Lado del Servidor:** Aunque el frontend ya calcula el subtotal para mostrárselo al usuario, el servidor de Python vuelve a sumar `price * quantity` para todos los productos recibidos. Es una regla de seguridad de e-commerce crítica: nunca se debe confiar en el precio enviado directamente por el cliente, ya que este podría haber sido manipulado.
 >   - **Persistencia de Órdenes (`orders.json`):** Al recibir una orden válida, leemos las órdenes previas de `orders.json`, le añadimos el nuevo pedido con un ID de orden formateado en tiempo real (`ORD-AAAAMMDD-HHMM-RAND`) y lo escribimos de vuelta. Esto simula el funcionamiento de una inserción en una base de datos en la nube.
 
+> **[2026-06-15] - Integración Cliente-Servidor del Checkout (`js/cart.js`)**
+> - **Qué se hizo:** Se conectó el botón de checkout del frontend para enviar peticiones HTTP `POST` asíncronas a la API de Python, manejando estados de carga ("loading") en el botón y flujos de error si el servidor está desconectado.
+> - **Explicación de la Lógica:**
+>   - **Peticiones HTTP POST asíncronas (`fetch`):** Al presionar "Proceder al Pago", el navegador serializa los datos actuales del carrito y los envía mediante un `POST` con la cabecera `Content-Type: application/json` al puerto 8000.
+>   - **Estados de Carga UX:** Para evitar el doble envío accidental si el usuario hace doble clic (que generaría dos órdenes de compra duplicadas), el botón se deshabilita (`disabled = true`) y cambia su texto a *"Procesando pedido..."* durante la comunicación de red, restaurándose en el bloque `finally`.
+>   - **Gestión de Errores de Conexión:** Envolvemos la petición en un bloque `try/catch`. Si el backend está apagado o hay un fallo de red, se le notifica al usuario con un aviso descriptivo sugiriendo cómo iniciar el servidor (`uvicorn`), manteniendo la resiliencia de la interfaz de usuario.
+
+
 
 
 
