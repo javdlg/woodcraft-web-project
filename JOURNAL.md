@@ -288,6 +288,14 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Estados de Carga UX:** Para evitar el doble envío accidental si el usuario hace doble clic (que generaría dos órdenes de compra duplicadas), el botón se deshabilita (`disabled = true`) y cambia su texto a *"Procesando pedido..."* durante la comunicación de red, restaurándose en el bloque `finally`.
 >   - **Gestión de Errores de Conexión:** Envolvemos la petición en un bloque `try/catch`. Si el backend está apagado o hay un fallo de red, se le notifica al usuario con un aviso descriptivo sugiriendo cómo iniciar el servidor (`uvicorn`), manteniendo la resiliencia de la interfaz de usuario.
 
+> **[2026-06-15] - Maquetación y Estilos del Modal de Detalles del Producto (`index.html` y `css/components.css`)**
+> - **Qué se hizo:** Se agregó el contenedor base del modal en el archivo HTML y se diseñaron sus hojas de estilo responsivas en CSS, preparándolo para la inyección dinámica de datos en la siguiente fase.
+> - **Explicación de la Lógica:**
+>   - **Diseño Responsivo Split-Screen:** Se implementó una estructura flexbox. En dispositivos móviles se apila verticalmente (la imagen arriba, los detalles y descripción abajo). A partir de resoluciones tipo tablet/desktop (768px+), pasa a una fila horizontal de 500px de altura, dividiendo el espacio en 45% para la imagen y 55% para el contenido, lo cual emula los estándares de e-commerce de gama alta.
+>   - **Glassmorphism en Overlay:** El fondo `.product-modal-overlay` utiliza `rgba(34, 28, 25, 0.6)` con `backdrop-filter: blur(8px)`, logrando un desenfoque premium sobre el contenido de la web al abrir el modal, enfocando el interés del usuario.
+>   - **Transiciones y Transformaciones de Escala:** El modal utiliza transiciones de escala (`transform: translate(-50%, -50%) scale(0.95)`) y opacidad. Al activarse, la escala pasa a `1` de forma amortiguada por hardware, imitando el rebote físico natural.
+
+
 
 
 
