@@ -218,6 +218,114 @@ export const loadProductsFromAPI = async (categoryFilter = '') => {
     }
 };
 
+// Elementos del DOM del Modal
+const modal = $('#product-modal');
+const modalOverlay = $('#product-modal-overlay');
+
+/**
+ * Genera especificaciones técnicas simuladas basadas en la categoría y nombre del producto.
+ * @param {Object} product - El objeto de producto.
+ * @returns {Object} Un objeto con madera, acabado, dimensiones y stock.
+ */
+const getProductSpecs = (product) => {
+    const category = product.category;
+    let wood = "Madera Noble";
+    const nameLower = product.name.toLowerCase();
+    
+    if (nameLower.includes("roble")) wood = "Roble";
+    else if (nameLower.includes("haya")) wood = "Haya";
+    else if (nameLower.includes("coihue")) wood = "Coihue";
+    else if (nameLower.includes("raulí")) wood = "Raulí";
+    else if (nameLower.includes("ciprés")) wood = "Ciprés";
+    else if (nameLower.includes("alerce")) wood = "Alerce";
+    else if (nameLower.includes("lenga")) wood = "Lenga";
+    else if (nameLower.includes("oregón") || nameLower.includes("oregon")) wood = "Pino Oregón";
+
+    return {
+        wood,
+        finish: category === "cocina" ? "Aceite mineral apto alimentos" : "Cera de abejas impermeable",
+        dimensions: category === "cocina" ? "40 x 25 x 3 cm" : category === "baño" ? "20 x 12 x 8 cm" : category === "living" ? "50 x 50 x 45 cm" : "30 x 15 x 60 cm",
+        stock: product.stock || 5
+    };
+};
+
+/**
+ * Abre el modal de detalles del producto consultando el endpoint específico de la API.
+ * Si la API falla, carga los detalles desde la memoria local para mantener la resiliencia.
+ * @param {number|string} productId - ID del producto.
+ */
+export const openProductModal = async (productId) => {
+    if (!modal || !modalOverlay) return;
+
+    let product = null;
+
+    try {
+        // Intentamos consumir el endpoint de FastAPI específico por ID
+        const response = await fetch(`${API_BASE_URL}/${productId}`);
+        if (response.ok) {
+            product = await response.json();
+        } else {
+            throw new Error(`HTTP Error: ${response.status}`);
+        }
+    } catch (error) {
+        console.warn(`⚠️ API offline o error al traer producto ${productId}. Cargando desde datos de respaldo local.`, error);
+        product = getProductById(productId);
+    }
+
+    if (!product) return;
+
+    const specs = getProductSpecs(product);
+
+    // Inyectar contenido en el modal de forma dinámica
+    modal.innerHTML = `
+        <button class="modal-close-btn" id="modal-close-btn" aria-label="Cerrar detalles del producto">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="modal-body">
+            <div class="modal-image-container">
+                <img src="${product.image}" alt="${product.name}" class="modal-image">
+            </div>
+            <div class="modal-details">
+                <span class="modal-cat">${product.category}</span>
+                <h3 class="modal-title">${product.name}</h3>
+                <span class="modal-price">${formatPrice(product.price)}</span>
+                <p class="modal-desc">${product.description}</p>
+                
+                <div class="modal-specs">
+                    <div class="spec-item"><strong>Madera:</strong> ${specs.wood}</div>
+                    <div class="spec-item"><strong>Acabado:</strong> ${specs.finish}</div>
+                    <div class="spec-item"><strong>Medidas:</strong> ${specs.dimensions}</div>
+                    <div class="spec-item"><strong>Stock:</strong> ${specs.stock} unidades</div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="btn btn-primary btn-block modal-add-to-cart-btn" data-id="${product.id}">
+                        <i class="fa-solid fa-cart-plus"></i> Agregar al Carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Abrir modal con clases de transición y atributos ARIA
+    modal.classList.add('open');
+    modalOverlay.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+};
+
+/**
+ * Cierra el modal de detalles del producto.
+ */
+export const closeProductModal = () => {
+    if (!modal || !modalOverlay) return;
+    
+    modal.classList.remove('open');
+    modalOverlay.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = ''; // Devolver scroll al body
+};
+
 /**
  * Inicializa los controladores del catálogo y la delegación de eventos.
  */
@@ -243,9 +351,58 @@ const initCatalog = () => {
         });
     }
 
+    // EVENT DELEGATION: Clic en la tarjeta de producto para abrir detalles
+    const grid = $('#products-grid');
+    if (grid) {
+        grid.addEventListener('click', (e) => {
+            // Evitar abrir modal si el clic se hizo en el botón directo de comprar
+            if (e.target.closest('.add-to-cart-btn')) return;
+
+            const card = e.target.closest('.product-card');
+            if (card) {
+                const productId = card.id.replace('product-', '');
+                openProductModal(productId);
+            }
+        });
+    }
+
+    // EVENT DELEGATION: Clics dentro del modal (Cerrar y Comprar)
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            // Clic en botón cerrar
+            if (e.target.closest('#modal-close-btn')) {
+                closeProductModal();
+                return;
+            }
+
+            // Clic en "Agregar al Carrito" dentro del modal
+            const addBtn = e.target.closest('.modal-add-to-cart-btn');
+            if (addBtn) {
+                const id = addBtn.dataset.id;
+                // Emitimos un evento personalizado para desacoplar de cart.js
+                // Esto previene dependencias circulares ES6 (cart.js importa gallery.js y viceversa)
+                document.dispatchEvent(new CustomEvent('addToCartRequested', { detail: { id } }));
+                closeProductModal();
+            }
+        });
+    }
+
+    // Cierre del modal al hacer clic en el overlay difuminado
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', closeProductModal);
+    }
+
+    // Cierre de accesibilidad: tecla Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.classList.contains('open')) {
+            closeProductModal();
+        }
+    });
+
     // Carga inicial al cargar el script
     loadProductsFromAPI();
 };
 
 // Arrancar catálogo
 initCatalog();
+

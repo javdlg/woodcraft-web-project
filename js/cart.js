@@ -282,6 +282,11 @@ const initCart = () => {
             }
         });
     }
+
+    // 5. Escuchar evento personalizado de agregar al carrito (decoupled modal interaction)
+    document.addEventListener('addToCartRequested', (e) => {
+        addToCart(e.detail.id);
+    });
 };
 
 // Inicializar el carrito al cargar el script

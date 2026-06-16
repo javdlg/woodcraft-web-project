@@ -295,6 +295,14 @@ A medida que el proyecto crezca, aplicaremos y explicaremos estos conceptos para
 >   - **Glassmorphism en Overlay:** El fondo `.product-modal-overlay` utiliza `rgba(34, 28, 25, 0.6)` con `backdrop-filter: blur(8px)`, logrando un desenfoque premium sobre el contenido de la web al abrir el modal, enfocando el interés del usuario.
 >   - **Transiciones y Transformaciones de Escala:** El modal utiliza transiciones de escala (`transform: translate(-50%, -50%) scale(0.95)`) y opacidad. Al activarse, la escala pasa a `1` de forma amortiguada por hardware, imitando el rebote físico natural.
 
+> **[2026-06-16] - Lógica de Negocio y Eventos del Modal de Detalles (`js/gallery.js` y `js/cart.js`)**
+> - **Qué se hizo:** Se implementó la lógica interactiva del modal de detalles del producto, consumiendo el endpoint por ID de FastAPI (`GET /api/products/{id}`), estructurando detalles técnicos dinámicos y utilizando eventos desacoplados para el carrito.
+> - **Explicación de la Lógica:**
+>   - **Consumo de Endpoints Específicos por ID:** Al hacer clic en una tarjeta de producto, el frontend realiza una petición asíncrona (`fetch`) al endpoint `/api/products/{id}` en FastAPI. Si la petición falla o la API está offline, se recupera el producto desde la memoria local.
+>   - **Desacoplamiento con Custom Events (`addToCartRequested`):** Para evitar dependencias circulares en ES6 (`cart.js` importa `gallery.js` para consultar productos, por lo que `gallery.js` no debe importar `cart.js` para añadir productos), usamos la API de eventos nativa del navegador. El modal en `gallery.js` despacha un `CustomEvent` en `document` que es capturado en `cart.js` para procesar la adición al carrito.
+>   - **Experiencia de Cierre Accesible (Escape + Click fuera):** Se programaron escuchadores de eventos para que el modal se cierre al hacer clic en el overlay de desenfoque de fondo, al presionar la tecla `Escape` (estándar WAI-ARIA) o al usar el botón de cierre, devolviendo el scroll del body a su estado natural.
+
+
 
 
 
